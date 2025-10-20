@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blin Blin - Relojes de lujo exclusivos. Elegancia atemporal en cada detalle.">
+    <title>Blin Blin Watches | Relojes de Lujo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F4E5A1;
+            --gold-dark: #B8941E;
+            --black: #0A0A0A;
+            --black-light: #1A1A1A;
+            --black-lighter: #2A2A2A;
+            --white: #FFFFFF;
+            --gray: #B8B8B8;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: var(--white);
+            background: var(--black);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gold);
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 3rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            animation: shine 3s infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 90px;
+            height: 90vh;
+            background: linear-gradient(rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.8)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%230A0A0A"/><circle cx="960" cy="540" r="400" fill="%23D4AF37" opacity="0.1"/></svg>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '⌚';
+            position: absolute;
+            font-size: 40rem;
+            opacity: 0.03;
+            animation: rotate 20s linear infinite;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .hero-subtitle {
+            color: var(--gold);
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--white), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeIn 2.5s ease-in;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            animation: fadeIn 3s ease-in;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--black);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid var(--gold);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--white), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-description {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Collections Grid */
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .collection-card {
+            background: var(--black-light);
+            border: 1px solid var(--gold-dark);
+            padding: 0;
+            overflow: hidden;
+            transition: all 0.4s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .collection-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .collection-card:hover::before {
+            left: 100%;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+            border-color: var(--gold);
+        }
+
+        .collection-image {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, var(--black-lighter), var(--black-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            transition: transform 0.4s;
+        }
+
+        .collection-card:hover .collection-image {
+            transform: scale(1.1);
+        }
+
+        .collection-info {
+            padding: 2rem;
+        }
+
+        .collection-info h3 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .collection-info p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .collection-price {
+            font-size: 1.5rem;
+            color: var(--gold);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--black-light);
+            border-top: 1px solid var(--gold-dark);
+            border-bottom: 1px solid var(--gold-dark);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+        }
+
+        .feature-item h3 {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .feature-item p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--black), var(--black-lighter));
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item h3 {
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .stat-item p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            height: 400px;
+            background: linear-gradient(135deg, var(--black-lighter), var(--black-light));
+            border: 2px solid var(--gold-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s;
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(212, 175, 55, 0.3));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--gold);
+            transform: scale(1.05);
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--black-light);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            padding: 2rem;
+        }
+
+        .contact-info h3 {
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--black-lighter);
+            border-left: 3px solid var(--gold);
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-item-icon {
+            font-size: 2rem;
+        }
+
+        .contact-item-text h4 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item-text p {
+            color: var(--gray);
+        }
+
+        .contact-form {
+            background: var(--black-lighter);
+            padding: 3rem;
+            border: 1px solid var(--gold-dark);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: var(--black);
+            border: 1px solid var(--gold-dark);
+            color: var(--white);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            border-top: 1px solid var(--gold);
+            padding: 4rem 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--gray);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gold-dark);
+            color: var(--gray);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shine {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 90px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--black-light);
+                width: 100%;
+                padding: 3rem;
+                transition: right 0.3s;
+                border-top: 1px solid var(--gold);
+                gap: 1.5rem;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .collections-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <div class="logo">✨ BLIN BLIN</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#colecciones">Colecciones</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <p class="hero-subtitle">Lujo Atemporal</p>
+            <h1>BLIN BLIN</h1>
+            <p class="hero-description">
+                Cada segundo cuenta. Cada momento brilla. Descubre relojes exclusivos 
+                que definen la elegancia y el prestigio.
+            </p>
+            <div class="cta-buttons">
+                <a href="#colecciones" class="btn-primary">Ver Colecciones</a>
+                <a href="#contacto" class="btn-secondary">Contactar</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="colecciones">
+        <div class="section-header">
+            <p class="section-subtitle">Nuestras Colecciones</p>
+            <h2 class="section-title">Elegancia en Tu Muñeca</h2>
+            <p class="section-description">
+                Relojes de alta relojería diseñados para quienes aprecian la perfección. 
+                Cada pieza es una obra maestra de precisión y estilo.
+            </p>
+        </div>
+        <div class="collections-grid">
+            <div class="collection-card">
+                <div class="collection-image">⌚</div>
+                <div class="collection-info">
+                    <h3>DIAMOND ELITE</h3>
+                    <p>Reloj de lujo con bisel de diamantes y movimiento automático suizo. Edición limitada de 100 piezas.</p>
+                    <p class="collection-price">$12,500 USD</p>
+                    <a href="#contacto" class="btn-primary" style="display: inline-block;">Consultar</a>
+                </div>
+            </div>
+            <div class="collection-card">
+                <div class="collection-image">⏱️</div>
+                <div class="collection-info">
+                    <h3>GOLDEN PRESTIGE</h3>
+                    <p>Cronógrafo en oro de 18k con correa de cuero italiano. Perfecto para el ejecutivo moderno.</p>
+                    <p class="collection-price">$8,900 USD</p>
+                    <a href="#contacto" class="btn-primary" style="display: inline-block;">Consultar</a>
+                </div>
+            </div>
+            <div class="collection-card">
+                <div class="collection-image">⏰</div>
+                <div class="collection-info">
+                    <h3>MIDNIGHT LUXURY</h3>
+                    <p>Diseño minimalista con caja de acero negro y detalles dorados. Resistente al agua hasta 100m.</p>
+                    <p class="collection-price">$5,200 USD</p>
+                    <a href="#contacto" class="btn-primary" style="display: inline-block;">Consultar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="section-header">
+            <p class="section-subtitle">¿Por Qué Blin Blin?</p>
+            <h2 class="section-title">Excelencia en Cada Detalle</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <span class="feature-icon">💎</span>
+                <h3>Materiales Premium</h3>
+                <p>Utilizamos solo materiales de la más alta calidad: oro 18k, diamantes certificados y acero inoxidable suizo.</p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">⚙️</span>
+                <h3>Movimiento Suizo</h3>
+                <p>Maquinaria de precisión suiza que garantiza exactitud y durabilidad por generaciones.</p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">🎨</span>
+                <h3>Diseño Exclusivo</h3>
+                <p>Cada modelo es una obra de arte única, diseñada por maestros relojeros con décadas de experiencia.</p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">🔒</span>
+                <h3>Garantía Vitalicia</h3>
+                <p>Respaldamos cada reloj con garantía vitalicia y servicio técnico especializado sin costo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="section-header">
+            <p class="section-subtitle">Números que Hablan</p>
+            <h2 class="section-title">Nuestra Historia en Cifras</h2>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>25+</h3>
+                <p>Años de Experiencia</p>
+            </div>
+            <div class="stat-item">
+                <h3>10,000+</h3>
+                <p>Clientes Satisfechos</p>
+            </div>
+            <div class="stat-item">
+                <h3>50+</h3>
+                <p>Premios Internacionales</p>
+            </div>
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Satisfacción Garantizada</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria">
+        <div class="section-header">
+            <p class="section-subtitle">Galería</p>
+            <h2 class="section-title">Momentos que Brillan</h2>
+            <p class="section-description">
+                Explora nuestra colección completa y descubre el reloj perfecto que define tu estilo.
+            </p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">⌚</div>
+            <div class="gallery-item">⏱️</div>
+            <div class="gallery-item">⏰</div>
+            <div class="gallery-item">⌚</div>
+            <div class="gallery-item">⏱️</div>
+            <div class="gallery-item">⏰</div>
+        </div>
+    </section>
+
+    <section class="contact" id="contacto">
+        <div class="section-header">
+            <p class="section-subtitle">Contáctanos</p>
+            <h2 class="section-title">Comienza Tu Experiencia Blin Blin</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Información de Contacto</h3>
+                <div class="contact-item">
+                    <span class="contact-item-icon">📍</span>
+                    <div class="contact-item-text">
+                        <h4>Ubicación</h4>
+                        <p>Av. Boutique Luxury, Itagüí<br>Antioquia, Colombia</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-item-icon">📞</span>
+                    <div class="contact-item-text">
+                        <h4>Teléfono</h4>
+                        <p>+57 300 123 4567<br>Lun - Sab: 9:00 AM - 8:00 PM</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-item-icon">✉️</span>
+                    <div class="contact-item-text">
+                        <h4>Email</h4>
+                        <p>contacto@blinblin.com<br>ventas@blinblin.com</p>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo *</label>
+                    <input type="text" id="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono *</label>
+                    <input type="tel" id="telefono" required>
+                </div>
+                <div class="form-group">
+                    <label for="interes">Colección de Interés</label>
+                    <select id="interes">
+                        <option value="">Seleccionar...</option>
+                        <option value="diamond">Diamond Elite</option>
+                        <option value="golden">Golden Prestige</option>
+                        <option value="midnight">Midnight Luxury</option>
+                        <option value="otro">Otra Colección</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Enviar Consulta</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>B
