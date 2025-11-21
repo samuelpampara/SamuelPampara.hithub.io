@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blin Blin - Relojes de Lujo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: #d4af37;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #d4af37;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #d4af37, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #d4af37;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #d4af37, #ffd700, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.5); }
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            color: #c4a035;
+        }
+
+        .cta-button {
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #d4af37, #ffd700);
+            color: #000;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 5px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 40px rgba(212, 175, 55, 0.6);
+        }
+
+        .collection {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 60px;
+            color: #d4af37;
+        }
+
+        .watches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .watch-card {
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border: 2px solid #d4af37;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .watch-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .watch-card:hover::before {
+            opacity: 1;
+        }
+
+        .watch-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.3);
+            border-color: #ffd700;
+        }
+
+        .watch-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .watch-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .watch-card p {
+            color: #c4a035;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .buy-button {
+            padding: 10px 30px;
+            background: transparent;
+            border: 2px solid #d4af37;
+            color: #d4af37;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+
+        .buy-button:hover {
+            background: #d4af37;
+            color: #000;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        footer {
+            background: #000;
+            color: #d4af37;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 100px;
+            border-top: 2px solid #d4af37;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">BLIN BLIN</div>
+            <div class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#coleccion">Colección</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>BLIN BLIN</h1>
+            <p>Relojes de Lujo Exclusivos</p>
+            <a href="#coleccion" class="cta-button">Explorar Colección</a>
+        </div>
+    </section>
+
+    <section class="collection" id="coleccion">
+        <h2 class="section-title">Nuestra Colección Exclusiva</h2>
+        <div class="watches-grid">
+            <div class="watch-card">
+                <div class="watch-icon">⌚</div>
+                <h3>Royal Prestige</h3>
+                <p>Elegancia atemporal con acabados en oro de 18k y movimiento suizo automático.</p>
+                <div class="price">$45,000</div>
+                <button class="buy-button">Comprar Ahora</button>
+            </div>
+
+            <div class="watch-card">
+                <div class="watch-icon">⌚</div>
+                <h3>Diamond Elite</h3>
+                <p>Bisel engastado con diamantes certificados y correa de cuero italiano premium.</p>
+                <div class="price">$78,000</div>
+                <button class="buy-button">Comprar Ahora</button>
+            </div>
+
+            <div class="watch-card">
+                <div class="watch-icon">⌚</div>
+                <h3>Golden Essence</h3>
+                <p>Diseño minimalista con caja de oro rosa y cristal de zafiro antirreflejos.</p>
+                <div class="price">$52,000</div>
+                <button class="buy-button">Comprar Ahora</button>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <p>&copy; 2024 Blin Blin - Relojes de Lujo. Todos los derechos reservados.</p>
+        <p>Exclusividad y Distinción en Cada Segundo</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        document.querySelectorAll('.buy-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const watchName = this.parentElement.querySelector('h3').textContent;
+                alert(`¡Gracias por tu interés en ${watchName}! Un asesor se pondrá en contacto contigo.`);
+            });
+        });
+    </script>
+</body>
+</html>
